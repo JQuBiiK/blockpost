@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
           mobileMenuLinks = document.querySelector('.mobile-navigation-link-list'),
           mobileMenuLinksMenuDefaultBtn = document.querySelector('.mobile-navigation-item-default'),
           mobileMenuLinksMenuClosetBtn = document.querySelector('.mobile-navigation-item-close'),
-          mobileMenuLinksMenuTriggerBtn = document.querySelector('.mobile-navigation-item.trigger');
+          mobileMenuLinksMenuTriggerBtn = document.querySelector('.mobile-navigation-item.trigger'),
+          mobileMenuLinksLowSize = document.querySelector('.mobile-navigation-link-list.low-size');
+
 
     catalogBtn.addEventListener('click', () => {
         if (!catalogModal.classList.contains('active')) {
@@ -51,10 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileMenuLinks.classList.add('active');
             mobileMenuLinksMenuDefaultBtn.classList.remove('active');
             mobileMenuLinksMenuClosetBtn.classList.add('active');
+            mobileMenuLinksMenuClosetBtn.querySelector('svg').style.color = '#FFFFFF';
+            mobileMenuLinksLowSize.classList.add('active');
+            mobileMenuLinksMenuTriggerBtn.classList.add('active');
         } else {
             mobileMenuLinks.classList.remove('active');
             mobileMenuLinksMenuDefaultBtn.classList.add('active');
             mobileMenuLinksMenuClosetBtn.classList.remove('active');
+            mobileMenuLinksLowSize.classList.remove('active');
+            mobileMenuLinksMenuTriggerBtn.classList.remove('active');
         }
     })
 
@@ -78,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileMenuBtnClose.classList.remove('active');
         }
 
-        if (mobileMenuLinks.classList.contains('active') && !e.target.closest('.mobile-menu-list') && !e.target.closest('.mobile-menu')){
+        if (mobileMenuLinks.classList.contains('active') && !e.target.closest('.mobile-navigation-link-list') && !e.target.closest('.mobile-navigation-item.trigger')){
             mobileMenuLinks.classList.remove('active');
             mobileMenuLinksMenuDefaultBtn.classList.add('active');
             mobileMenuLinksMenuClosetBtn.classList.remove('active');
@@ -92,6 +99,33 @@ document.addEventListener('DOMContentLoaded', () => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1
+    });
+
+    function toggleSlickSlider() {
+        if ($(window).width() <= 812) {
+            if (!$('.brand-list-slider').hasClass('slick-initialized')) {
+                $('.brand-list-slider').slick({
+                    arrows: false,
+                    dots: false,
+                    infinite: false,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    variableWidth: true
+                });
+            }
+        } else {
+            if ($('.brand-list-slider').hasClass('slick-initialized')) {
+                $('.brand-list-slider').slick('unslick');
+            }
+        }
+    }
+
+    // Запуск функции при загрузке страницы
+    toggleSlickSlider();
+
+    // Запуск функции при изменении размера окна
+    $(window).on('resize', function() {
+        toggleSlickSlider();
     });
 
 
