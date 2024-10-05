@@ -9,7 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
           mobileMenuBtn = document.querySelector('.mobile-menu'),
           mobileMenuModal = document.querySelector('.mobile-menu-list'),
           mobileMenuBtnDefault = document.querySelector('.mobile-menu-btn-default'),
-          mobileMenuBtnClose = document.querySelector('.mobile-menu-btn-close');
+          mobileMenuBtnClose = document.querySelector('.mobile-menu-btn-close'),
+          mobileMenuLinks = document.querySelector('.mobile-navigation-link-list'),
+          mobileMenuLinksMenuDefaultBtn = document.querySelector('.mobile-navigation-item-default'),
+          mobileMenuLinksMenuClosetBtn = document.querySelector('.mobile-navigation-item-close'),
+          mobileMenuLinksMenuTriggerBtn = document.querySelector('.mobile-navigation-item.trigger');
 
     catalogBtn.addEventListener('click', () => {
         if (!catalogModal.classList.contains('active')) {
@@ -42,6 +46,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
+    mobileMenuLinksMenuTriggerBtn.addEventListener('click', (e) => {
+        if(!mobileMenuLinks.classList.contains('active')) {
+            mobileMenuLinks.classList.add('active');
+            mobileMenuLinksMenuDefaultBtn.classList.remove('active');
+            mobileMenuLinksMenuClosetBtn.classList.add('active');
+        } else {
+            mobileMenuLinks.classList.remove('active');
+            mobileMenuLinksMenuDefaultBtn.classList.add('active');
+            mobileMenuLinksMenuClosetBtn.classList.remove('active');
+        }
+    })
+
 
     document.addEventListener('click', (e) => {
 
@@ -60,6 +76,12 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileMenuModal.classList.remove('active');
             mobileMenuBtnDefault.classList.add('active');
             mobileMenuBtnClose.classList.remove('active');
+        }
+
+        if (mobileMenuLinks.classList.contains('active') && !e.target.closest('.mobile-menu-list') && !e.target.closest('.mobile-menu')){
+            mobileMenuLinks.classList.remove('active');
+            mobileMenuLinksMenuDefaultBtn.classList.add('active');
+            mobileMenuLinksMenuClosetBtn.classList.remove('active');
         }
 
     });
