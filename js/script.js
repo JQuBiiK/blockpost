@@ -120,10 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Запуск функции при загрузке страницы
     toggleSlickSlider();
 
-    // Запуск функции при изменении размера окна
     $(window).on('resize', function() {
         toggleSlickSlider();
     });

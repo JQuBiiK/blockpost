@@ -6,6 +6,10 @@
     font-family: "Inter", sans-serif;
 }
 
+.slick-arrow {
+    display: none!important;
+}
+
 .container {
     max-width: 1280px;
     margin: 0 auto;
@@ -466,7 +470,6 @@
 
 .gallery {
     display: flex;
-    align-items: center;
 
 }
 .gallery-main {
@@ -487,6 +490,10 @@
     cursor: grab;
     border-radius: 32px;
     padding: 0 10px;
+}
+
+.gallery-main-slide img.small {
+    display: none;
 }
 
 .gallery-main-slide-content {
@@ -1532,6 +1539,10 @@ a.right-side-link p {
 
     .brand-list-slide.brand-list-link a, .brand-list-slide.brand-list-link a img {
         width: auto;
+    }
+
+    .footer-copyright {
+        padding: 16px 0 108px 0;
     }
 
 }
